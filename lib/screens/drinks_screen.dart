@@ -8,13 +8,13 @@ class DrinksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Drinks & Offers"),
+        title: const Text('Drinks & Offers'),
         backgroundColor: AppColors.deepBlack,
         iconTheme: const IconThemeData(color: AppColors.goldAccent),
       ),
       body: const Center(
         child: Text(
-          "Drinks menu coming soon...",
+          'Drinks menu coming soon...',
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
       ),

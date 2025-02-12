@@ -12,7 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: Color(0xFF1C1C1C)),
+      theme: ThemeData(
+        fontFamily: 'Montserrat', //apply Montserrat globally
+        scaffoldBackgroundColor: const Color(0xFF1C1C1C),
+      ),
       home: const HomeScreen(),
     );
   }

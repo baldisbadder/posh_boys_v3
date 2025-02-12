@@ -21,21 +21,21 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SectionCard(
-              title: "Opening Times",
-              content: "Mon-Fri: 5PM - 11PM\nSat-Sun: 12PM - 12AM",
+            const SectionCard(
+              title: 'Opening Times',
+              content: 'Mon-Fri: 5PM - 11PM\nSat-Sun: 12PM - 12AM',
               icon: Icons.access_time,
               color: AppColors.espressoBrown,
             ),
-            SectionCard(
-              title: "Our Location",
-              content: "123 Posh Street, London, UK",
+            const SectionCard(
+              title: 'Our Location',
+              content: '123 Posh Street, London, UK',
               icon: Icons.location_on,
               color: AppColors.classicBeige,
             ),
             ClickableCard(
-              title: "Next Event: Open Mic Night 🎤",
-              content: "Join us for live performances!",
+              title: 'Next Event: Open Mic Night 🎤',
+              content: 'Join us for live performances!',
               icon: Icons.event,
               color: AppColors.warmAmber,
               onTap: () {
@@ -43,8 +43,8 @@ class HomeScreen extends StatelessWidget {
               },
             ),
             ClickableCard(
-              title: "Drink Offers",
-              content: "2 Cocktails for £11 🍹",
+              title: 'Drink Offers',
+              content: '2 Cocktails for £11 🍹',
               icon: Icons.local_bar,
               color: AppColors.goldAccent,
               onTap: () {
