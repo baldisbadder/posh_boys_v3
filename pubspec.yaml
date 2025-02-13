@@ -17,6 +17,10 @@ dependencies:
   # Date formatting
   intl: ^0.18.0  # Useful for formatting dates (e.g., UK format dd/MM/yyyy HH:mm)
 
+  # HTML string parsing
+  html: ^0.15.4
+  flutter_html: ^3.0.0-beta.2
+  
   # State management (optional, for better app structure)
   provider: ^6.0.5  # Lightweight state management for dynamic data
 

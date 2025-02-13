@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import '../models/event.dart';
 import '../theme/app_colors.dart';
-import 'package:intl/intl.dart'; // For date formatting
-
+import '../utils/date_utils.dart';
 class EventCard extends StatelessWidget {
   final Event event;
 
@@ -11,61 +11,82 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      color: AppColors.espressoBrown, // Matches your theme
+      color: AppColors.cardBGEspressoBrown, // ✅ Themed background
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Event Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: event.imageUrl.isNotEmpty
-                  ? Image.network(event.imageUrl, width: 80, height: 80, fit: BoxFit.cover)
-                  : Container(
-                      width: 80,
-                      height: 80,
-                      color: AppColors.charcoalGrey,
-                      child: const Icon(Icons.event, color: Colors.white70, size: 40),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // ✅ Display Event Image (or Placeholder if No Image)
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+            child: event.imageUrl.isNotEmpty
+                ? Image.network(
+                    event.imageUrl,
+                    width: double.infinity,
+                    height: 180,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => _buildPlaceholderImage(),
+                  )
+                : _buildPlaceholderImage(),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ✅ Event Title
+                Text(
+                  event.name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textPrimaryWhite,
+                  ),
+                ),
+                const SizedBox(height: 6),
+
+                // ✅ Event Date & Time
+                Center(
+                  child: Text(
+                    '${DateUtilsHelper.formatUKDate(event.startDate)} at ${event.startTime}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.accentGold,
                     ),
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                // ✅ Formatted Event Description with HTML Parsing
+                Html(
+                  data: event.description,
+                  style: {
+                    'body': Style(
+                      fontSize: FontSize(14),
+                      color: AppColors.textSecondaryWhite70,
+                    ),
+                  },
+                ),
+              ],
             ),
-            const SizedBox(width: 12),
-            // Event Details
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    event.name,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    event.description,
-                    style: const TextStyle(fontSize: 14, color: Colors.white70),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    _formatDate(event.startDate), // Formats date nicely
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.goldAccent),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  // Format date to UK format
-  String _formatDate(DateTime date) {
-    return DateFormat('dd/MM/yyyy HH:mm').format(date);
+  // ✅ Placeholder Image Function (If No Image Available)
+  Widget _buildPlaceholderImage() {
+    return Container(
+      width: double.infinity,
+      height: 180,
+      color: AppColors.dividerCharcoalGrey, // Placeholder background
+      alignment: Alignment.center,
+      child: const Icon(Icons.image, size: 50, color: AppColors.textSecondaryWhite70),
+    );
   }
 }

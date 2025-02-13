@@ -5,12 +5,14 @@ class Event {
   final String description;
   final String imageUrl;
   final DateTime startDate;
+  final String startTime;
 
   Event({
     required this.name,
     required this.description,
     required this.imageUrl,
     required this.startDate,
+    required this.startTime,
   });
 
   factory Event.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class Event {
       description: json['eventdescription']?.toString() ?? 'No description available.',
       imageUrl: json['imageurl']?.toString() ?? '',
       startDate: _parseStartDate(json['startdate']),
+      startTime: json['starttime'],
     );
   }
 
@@ -33,7 +36,7 @@ class Event {
 
     try {
       int timestamp = int.tryParse(startDate.toString()) ?? 0;
-      return DateTime.fromMillisecondsSinceEpoch(timestamp);
+      return DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
     } catch (e) {
       if (kDebugMode) {
         debugPrint('Error parsing date: $e'); // ✅ Truncated error message

@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart'; // For kDebugMode
 import '../models/event.dart';
+import '../config/api_config.dart';
 
 Future<List<Event>> fetchEvents() async {
-  final url = Uri.parse('https://poshboysbar.co.uk/wp-json/mo/v1/app-events-all');
+  final url = Uri.parse(APIConfig.eventsEndpoint);
 
   try {
     final response = await http.get(url);

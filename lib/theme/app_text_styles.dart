@@ -5,17 +5,17 @@ class AppTextStyles {
   static const TextStyle heading = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.bold,
-    color: AppColors.goldAccent,
+    color: AppColors.accentGold,
   );
 
   static const TextStyle subheading = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
+    color: AppColors.textPrimaryWhite,
   );
 
   static const TextStyle bodyText = TextStyle(
     fontSize: 16,
-    color: Colors.white70,
+    color: AppColors.textSecondaryWhite70,
   );
 }

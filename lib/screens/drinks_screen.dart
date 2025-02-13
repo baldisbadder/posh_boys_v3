@@ -9,13 +9,13 @@ class DrinksScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Drinks & Offers'),
-        backgroundColor: AppColors.deepBlack,
-        iconTheme: const IconThemeData(color: AppColors.goldAccent),
+        backgroundColor: AppColors.backgroundDeepBlack,
+        iconTheme: const IconThemeData(color: AppColors.accentGold),
       ),
       body: const Center(
         child: Text(
           'Drinks menu coming soon...',
-          style: TextStyle(fontSize: 18, color: Colors.white),
+          style: TextStyle(fontSize: 18, color: AppColors.textPrimaryWhite),
         ),
       ),
     );

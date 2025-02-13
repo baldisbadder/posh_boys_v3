@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:posh_boys_v3/theme/app_colors.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Montserrat', //apply Montserrat globally
-        scaffoldBackgroundColor: const Color(0xFF1C1C1C),
+        scaffoldBackgroundColor: AppColors.backgroundDeepBlack,
       ),
       home: const HomeScreen(),
     );

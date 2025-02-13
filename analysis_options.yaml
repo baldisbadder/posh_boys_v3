@@ -4,6 +4,7 @@ analyzer:
   exclude:
     - "**/*.g.dart" # Ignore auto-generated files
     - "**/*.freezed.dart"
+    - "archive/**"
 
 linter:
   rules:
