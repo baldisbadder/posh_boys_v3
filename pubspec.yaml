@@ -12,10 +12,10 @@ dependencies:
     sdk: flutter
 
   # Networking (API calls)
-  http: ^0.13.6  # Latest version for handling API requests
+  http: ^1.3.0  # Latest version for handling API requests
 
   # Date formatting
-  intl: ^0.18.0  # Useful for formatting dates (e.g., UK format dd/MM/yyyy HH:mm)
+  intl: ^0.20.0  # Useful for formatting dates (e.g., UK format dd/MM/yyyy HH:mm)
 
   # HTML string parsing
   html: ^0.15.4
