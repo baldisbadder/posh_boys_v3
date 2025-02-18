@@ -10,10 +10,10 @@ Future<List<Event>> fetchEvents() async {
   try {
     final response = await http.get(url);
 
-    if (kDebugMode) {
+    /* if (kDebugMode) {
       debugPrint('API Response Status: ${response.statusCode}');
       debugPrint('API Response Body: ${response.body}');
-    }
+    } */
 
     if (response.statusCode == 200) {
       List<dynamic> jsonList = json.decode(response.body);

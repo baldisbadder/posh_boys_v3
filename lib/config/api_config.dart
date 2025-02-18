@@ -1,7 +1,11 @@
 class APIConfig {
-  static const String baseUrl = 'https://poshboysbar.co.uk/wp-json/poshboys/v1/';
+  // Posh Boys Custom PLugin API links
+  static const String pbAPIbaseUrl = 'https://poshboysbar.co.uk/wp-json/poshboys/v1/';
+  static const String eventsEndpoint = '${pbAPIbaseUrl}events';
+  static const String offersEndpoint = '${pbAPIbaseUrl}app-offers-all';
+  static const String beersEndpoint = '${pbAPIbaseUrl}beers';
 
-  static const String eventsEndpoint = '${baseUrl}events';
-  static const String offersEndpoint = '${baseUrl}app-offers-all';
-  static const String openingTimesEndpoint = '${baseUrl}app-opening-times';
+  // Wordpress standard API links
+  static const String wpAPIbaseUrl = 'https://poshboysbar.co.uk/wp-json/wp/v2/';
+  static const String openingTimesEndpoint = '${wpAPIbaseUrl}posts/1123';
 }

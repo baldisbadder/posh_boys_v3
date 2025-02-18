@@ -1,10 +1,24 @@
+// Flutter packages
 import 'package:flutter/material.dart';
+
+// Services
 import '../services/event_service.dart';
+import '../services/opening_times_service.dart';
+
+// Models
 import '../models/event.dart';
+
+// Widgets
 import '../widgets/clickable_card.dart';
+import '../widgets/home_beer_section.dart';
+
+// Configs
 import '../theme/app_colors.dart';
-import 'events_screen.dart';
 import '../utils/date_utils.dart';
+
+// Screens
+import 'events_screen.dart';
+import '../screens/opening_times_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           // ✅ Next Event Card (Only if there's an upcoming event)
           if (nextEvent != null)
             ClickableCard(
-              title: '${DateUtilsHelper.getFriendlyEventDay(nextEvent.startDate)}: ${nextEvent.name}',
+              title: 'Next event: ${DateUtilsHelper.getFriendlyEventDay(nextEvent.startDate)}: ${nextEvent.name}',
               bgColor: AppColors.highlightWarmAmber,
               content: '${DateUtilsHelper.formatUKDate(nextEvent.startDate)} ${nextEvent.startTime}',
               icon: Icons.event,
@@ -90,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               },
             ),
 
-          const SizedBox(height: 10),
+          const HomeBeerSection(),
 
           // ✅ Existing Sections (Modify based on what’s already in your home screen)
           ClickableCard(
@@ -103,19 +117,34 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             },
           ),
 
-          const SizedBox(height: 10),
+          FutureBuilder<Map<String, dynamic>>(
+            future: fetchOpeningTimes(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError || snapshot.data == null) {
+                return const Text('Error loading opening times');
+              }
 
-          ClickableCard(
-            title: 'Opening Times',
-            bgColor: AppColors.sectionBGClassicBeige,
-            content: "Find out when we're open!",
-            icon: Icons.schedule,
-            onTap: () {
-              // Navigate to opening times screen
+              // ✅ Get today's opening time
+              String todayOpening = getTodaysOpeningTime(snapshot.data!);
+              debugPrint('Today opening: $todayOpening');
+              return ClickableCard(
+                title: 'Opening Times',
+                content: 'Today: $todayOpening',
+                icon: Icons.access_time,
+                bgColor: Colors.brown, // Change to your preferred color
+                onTap: () {
+                  // Navigate to full opening times screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OpeningTimesScreen(snapshot.data!)),
+                  );
+                },
+              );
             },
           ),
 
-          const SizedBox(height: 10),
 
           ClickableCard(
             title: 'Our Location',

@@ -16,9 +16,9 @@ class Event {
   });
 
   factory Event.fromJson(Map<String, dynamic> json) {
-    if (kDebugMode) {
+    /* if (kDebugMode) {
       debugPrint('Received JSON: ${json.toString()}'); // ✅ Logs only in Debug Mode
-    }
+    } */
 
     return Event(
       name: json['eventname']?.toString() ?? 'Unnamed Event',

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import '../models/event.dart';
 import '../theme/app_colors.dart';
-import '../utils/string_utils.dart'; // ✅ Import helper to strip HTML
 import '../utils/date_utils.dart';  // ✅ Import date helper
 
 class EventCard extends StatefulWidget {

@@ -10,6 +10,9 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
+/* Events API */
+/**************/
+
 function get_custom_events_api() {
     global $wpdb;
 
@@ -55,10 +58,56 @@ function get_custom_events_api() {
     return rest_ensure_response($events);
 }
 
+/* Beers API */
+/**************/
+
+function get_custom_beers_api() {
+    global $wpdb;
+
+    $results = $wpdb->get_results("
+        SELECT 
+            post.ID, 
+            post.post_title AS beer_name, 
+            post.post_content AS beer_description, 
+            post_image.guid AS beer_image_url, 
+            availability.term_taxonomy_id AS avail_code
+        FROM `audd_posts` AS post
+        LEFT JOIN `audd_postmeta` AS meta_image 
+            ON post.ID = meta_image.post_id 
+            AND meta_image.meta_key = '_thumbnail_id'
+        LEFT JOIN `audd_posts` AS post_image 
+            ON meta_image.meta_value = post_image.ID
+        LEFT JOIN `audd_term_relationships` AS availability 
+            ON availability.object_id = post.ID
+        WHERE post.post_type = 'beer'
+        AND (availability.term_taxonomy_id BETWEEN 22 AND 23)
+    ");
+
+    $beers = [];
+    foreach ($results as $row) {
+        $beers[] = [
+            'id' => $row->ID,
+            'beername' => $row->beer_name,
+            'beerdescription' => wp_kses_post($row->beer_description),
+            'imageurl' => $row->beer_image_url ?: '',
+            'availcode' => $row->avail_code,
+        ];
+    }
+
+    return rest_ensure_response($beers);
+}
+
 add_action('rest_api_init', function () {
     register_rest_route('poshboys/v1', '/events/', [
         'methods' => 'GET',
         'callback' => 'get_custom_events_api',
         'permission_callback' => '__return_true',
     ]);
+
+    register_rest_route('poshboys/v1', '/beers/', [
+        'methods' => 'GET',
+        'callback' => 'get_custom_beers_api',
+        'permission_callback' => '__return_true',
+    ]);
+
 });
