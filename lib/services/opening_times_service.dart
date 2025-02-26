@@ -2,7 +2,6 @@ import 'package:http/http.dart' as http;
 import 'package:html_unescape/html_unescape.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
 import '../config/api_config.dart';
 
 Future<Map<String, dynamic>> fetchOpeningTimes() async {
@@ -16,9 +15,7 @@ Future<Map<String, dynamic>> fetchOpeningTimes() async {
       String rawContent = jsonData['content']['rendered'] ?? '{}';
 
       // ✅ Remove HTML tags
-      debugPrint('Stripping string');
       String cleanJsonString = _stripHtmlTags(rawContent);
-      debugPrint('Stripped: $cleanJsonString');
       // ✅ Parse JSON
       return json.decode(cleanJsonString);
     } else {

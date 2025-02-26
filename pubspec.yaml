@@ -34,6 +34,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/images/HeaderBorderTopBottom2.png
+
   # Fonts (Optional: If you want a custom font like Montserrat)
   fonts:
     - family: Montserrat

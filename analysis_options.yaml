@@ -5,7 +5,8 @@ analyzer:
     - "**/*.g.dart" # Ignore auto-generated files
     - "**/*.freezed.dart"
     - "archive/**"
-    - "wordpress-api/**"
+    - "wordpress-functions/**"
+    - "working/**"
 
 linter:
   rules:
