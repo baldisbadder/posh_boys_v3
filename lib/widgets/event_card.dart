@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import '../models/event.dart';
 import '../theme/app_colors.dart';
 import '../utils/date_utils.dart';  // ✅ Import date helper
@@ -98,27 +98,23 @@ class EventCardState extends State<EventCard> {
                   crossFadeState: _isExpanded
                       ? CrossFadeState.showSecond
                       : CrossFadeState.showFirst,
-                  firstChild: Html(
-                    data: previewText,
-                    style: {
-                      'body': Style(
-                        fontSize: FontSize(14),
-                        color: AppColors.textSecondaryWhite70,
-                      ),
-                    },
+                  firstChild: HtmlWidget(
+                    previewText,
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      color: AppColors.textSecondaryWhite70,
+                    ),
                   ),
                   /*Text(
                     previewText,
                     style: const TextStyle(fontSize: 14, color: AppColors.textSecondaryWhite70),
                   ), */
-                  secondChild: Html(
-                    data: formattedDescription,
-                    style: {
-                      'body': Style(
-                        fontSize: FontSize(14),
-                        color: AppColors.textSecondaryWhite70,
-                      ),
-                    },
+                  secondChild: HtmlWidget(
+                    formattedDescription,
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      color: AppColors.textSecondaryWhite70,
+                    ),
                   ),
                 ),
 

@@ -1,5 +1,5 @@
 // Flutter packages
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 // Services
 import '../services/event_service.dart';

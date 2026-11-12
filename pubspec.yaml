@@ -2,34 +2,44 @@ name: posh_boys_v3
 description: "A Flutter app for The Posh Boys Bar, featuring events, drinks, and more."
 publish_to: "none" # Prevents accidental publishing to pub.dev
 
+# App version: <version shown to users>+<build number>.
+# Bump the build number (+N) for every TestFlight / Play upload.
+version: 1.0.0+1
+
 # Flutter SDK version
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ^3.14.0
 
 # Dependencies for the app
 dependencies:
   flutter:
     sdk: flutter
 
-  # Networking (API calls)
-  http: ^1.3.0  # Latest version for handling API requests
+  # Material Design widgets (split out of the Flutter SDK in 3.47)
+  material_ui: ^1.11.0
 
-  # Date formatting
-  intl: ^0.20.0  # Useful for formatting dates (e.g., UK format dd/MM/yyyy HH:mm)
+  # Networking (API calls)
+  http: ^1.6.0
+
+  # Date formatting (e.g., UK format dd/MM/yyyy HH:mm)
+  intl: ^0.20.3
 
   # HTML string parsing
-  html: ^0.15.4
-  flutter_html: ^3.0.0-beta.2
-  html_unescape: ^2.0.0 
-  
-  # State management (optional, for better app structure)
-  provider: ^6.0.5  # Lightweight state management for dynamic data
+  html: ^0.15.7
+  html_unescape: ^2.0.0
+
+  # HTML rendering (beer & event descriptions). Replaces flutter_html,
+  # which is unmaintained and broke against html 0.15.6+.
+  flutter_widget_from_html_core: ^0.17.4
+
+  # State management (not used yet)
+  provider: ^6.1.5+1
 
 # Development dependencies (for debugging, testing)
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true

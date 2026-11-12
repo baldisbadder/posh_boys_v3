@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import '../models/beer.dart';
 import '../theme/app_colors.dart';
 
@@ -56,15 +56,12 @@ class BeerCard extends StatelessWidget {
                   const SizedBox(height: 6),
 
                   // ✅ Beer Description (Full HTML)
-                  Html(
-                    data: beer.description,
-                    style: {
-                      'body': Style(
-                        fontSize: FontSize(14),
-                        color: AppColors.textSecondaryWhite70,
-                        margin: Margins.zero,
-                      ),
-                    },
+                  HtmlWidget(
+                    beer.description,
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      color: AppColors.textSecondaryWhite70,
+                    ),
                   ),
                 ],
               ),

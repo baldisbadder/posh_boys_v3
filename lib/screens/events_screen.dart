@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../models/event.dart';
 import '../widgets/event_card.dart';
 import '../widgets/screen_widgets.dart';

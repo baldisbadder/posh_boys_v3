@@ -3,7 +3,7 @@
 /* ====================== */
 
 // Flutter/dart
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 // Generic config/functions
 import '../config/constants_config.dart';
